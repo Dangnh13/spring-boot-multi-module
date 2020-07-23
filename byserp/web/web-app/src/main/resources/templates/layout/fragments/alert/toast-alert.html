@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:fragment="alert(content)">
+    <div aria-live="polite" aria-atomic="true" style="position: relative; z-index: 99999">
+        <!-- Position it -->
+        <div style="position: absolute; top: 0; right: 0">
+            <div class="toast fade dispose" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" data-delay="2000">
+                <div class="toast-header">
+                    <strong class="mr-auto"><i class="fas fa-exclamation-circle rounded mr-2"></i>Thông báo</strong>
+                    <small class="text-muted">just now</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <span id="toast-body" th:text="${content}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('.toast').on('hidden.bs.toast', function () {
+            $(this).toast('dispose');
+        })
+
+    </script>
+
+</th:block>
+
+
+</html>

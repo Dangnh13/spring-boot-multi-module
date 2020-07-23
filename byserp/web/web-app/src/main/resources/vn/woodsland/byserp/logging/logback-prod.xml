@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<included>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- Application logs at trace level -->
+    <logger name="vn.woodsland.byserp" level="info" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE"/>
+    </logger>
+
+</included>

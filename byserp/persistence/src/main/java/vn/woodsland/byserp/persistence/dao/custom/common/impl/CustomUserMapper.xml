@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.woodsland.byserp.persistence.dao.custom.common.CustomUserMapper">
+    <resultMap id="SearchUserModal"
+               type="vn.woodsland.byserp.domain.modal.common.SearchUserModal">
+        <id column="username" jdbcType="VARCHAR" property="username" />
+        <result column="fullname" jdbcType="VARCHAR" property="fullname" />
+        <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+        <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="position" jdbcType="SMALLINT" property="position" />
+        <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    </resultMap>
+
+    <select id="searchUser" resultMap="SearchUserModal"
+            parameterType="vn.woodsland.byserp.dto.common.user.prm.SearchUserPrm">
+        SELECT
+            usr.username,
+            usr.fullname,
+            usr.department_id,
+            usr.phone_no,
+            usr.email,
+            usr."position",
+            dep.department_name
+        FROM
+            users usr
+            INNER JOIN department dep ON usr.department_id = dep."id"
+            AND usr.enabled = TRUE
+            <if test="avoidUsername != null">
+                AND usr.username != #{ avoidUsername, jdbcType = VARCHAR }
+            </if>
+            <if test="departmentId != null">
+                AND usr.department_id = #{ departmentId, jdbcType = INTEGER }
+            </if>
+            <if test="username != null">
+                AND usr.username like  '%' || #{ username, jdbcType = VARCHAR } || '%'
+            </if>
+        <if test="email != null">
+            AND usr.email like  '%' || #{ email, jdbcType = VARCHAR } || '%'
+        </if>
+    </select>
+</mapper>

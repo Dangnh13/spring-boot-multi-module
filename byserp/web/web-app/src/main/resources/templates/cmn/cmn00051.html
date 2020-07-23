@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Cập nhật loại yêu cầu</title>
+</head>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Cập nhật loại yêu cầu</h5>
+
+    <div th:if="${success}" class="alert alert-success" role="alert">Cập nhật thành công</div>
+
+    <form class="needs-validation" th:action="@{/cmn/cmn00051/update}" th:object="${cmn00051Form}" method="post"
+          novalidate>
+
+        <div class="card card-body mb-2">
+            <div class="form-group row mb-0">
+                <label for="id"
+                       class="col-form-label col-form-label-sm col-md-3 text-md-right required font-weight-bold">Mã yêu
+                    cầu</label>
+                <div class="col-md-8">
+                    <input type="text" readonly th:field="*{id}" class="form-control form-control-sm" th:value="*{id}"
+                           id="id" required>
+                    <small th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+            <div class="form-group row mb-0">
+                <label for="title"
+                       class="col-form-label col-form-label-sm col-md-3 text-md-right required font-weight-bold">Tiêu
+                    đề</label>
+                <div class="col-md-8">
+                    <input type="text" th:value="*{title}" th:field="*{title}" class="form-control form-control-sm"
+                           id="title" required>
+                    <small th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-end mt-3">
+            <div class="col-md-4 order-md-2 mb-md-0 mb-2">
+                <button class="btn btn-outline-dark btn-block" type="submit" id="confirm-submit"><i
+                        class="fas fa-save"></i><strong>Cập nhật</strong></button>
+            </div>
+            <div class="col-md-4 order-md-1 mb-md-0">
+                <a class="btn btn-outline-secondary btn-block" th:href="@{/cmn/cmn0005/init}" role="button"><i
+                        class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+            </div>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,230 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>vn.woodsland</groupId>
+    <artifactId>byserp</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>byserp-service</name>
+    <description>byserp-service</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.3.RELEASE</version>
+    </parent>
+
+    <properties>
+        <!-- Project -->
+        <project.version>0.0.1-SNAPSHOT</project.version>
+
+        <!-- Java -->
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+
+        <!-- spring -->
+        <mybatis.spring.boot.version>2.1.1</mybatis.spring.boot.version>
+        <springfox.swagger.version>2.9.2</springfox.swagger.version>
+        <oauth2.autoconfigure.version>2.2.4.RELEASE</oauth2.autoconfigure.version>
+
+        <!-- Postgresql -->
+        <postgresql.version>42.2.9</postgresql.version>
+
+        <!-- Other libs -->
+        <lombok.version>1.18.10</lombok.version>
+        <commons.beanutils.version>1.9.4</commons.beanutils.version>
+        <commons.collections.version>4.4</commons.collections.version>
+        <commons.lang3.version>3.9</commons.lang3.version>
+        <guava.version>28.2-jre</guava.version>
+        <opencsv.version>4.0</opencsv.version>
+        <mybatis.generator.core.version>1.3.7</mybatis.generator.core.version>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Framework -->
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>framework</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Data transfer object dependencies-->
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>dto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Domain dependencies-->
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--Persistence dependencies-->
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- Business dependencies-->
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>business</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>business-interface</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>business-implementation</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+ <!-- Thêm comment-->
+            <!-- Oauth2 service-->
+            <dependency>
+                <groupId>vn.woodsland</groupId>
+                <artifactId>oauth2</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>framework</module>
+        <module>dto</module>
+        <module>domain</module>
+        <module>persistence</module>
+        <module>business</module>
+        <module>security</module>
+        <module>mybatis-generator</module>
+        <module>schema-migration</module>
+        <module>web</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- apache commons -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>generatorConfig.xml</exclude>
+                    <exclude>migration/**</exclude>
+                    <exclude>schema/**</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Quản lý chi nhánh</title>
+</head>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Quản lý chi nhánh</h5>
+
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered text-nowrap mb-0"
+               id="table"
+               data-toggle="table"
+               data-url="/cmn/cmn0002/load-data"
+               data-pagination="true"
+               data-search="true"
+               data-page-size="10">
+            <thead>
+            <tr>
+                <th data-field="id">ID</th>
+                <th data-field="branchName">Chi nhánh</th>
+                <th data-formatter="operateFormatter"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <script th:src="@{/js/cmn/cmn0002.js}"></script>
+</section>

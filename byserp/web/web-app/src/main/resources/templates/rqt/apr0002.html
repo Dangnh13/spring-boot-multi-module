@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Duyệt đề nghị thanh toán</title>
+</head>
+
+<nav layout:fragment="sub-nav">
+    <th:block th:insert="layout/fragments/sub-nav :: element(active=false, href='/', icon='fas fa-home', label='Trang chủ')"></th:block>
+    <th:block th:insert="layout/fragments/sub-nav :: element(active=true, href='/rqt/apr0002/init', icon='fas fa-money-check-alt', label='Phê duyệt đề nghị thanh toán')"></th:block>
+</nav>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Duyệt đề nghị thanh toán</h5>
+
+    <div th:if="${success}" class="alert alert-success" role="alert">Cập nhật thành công</div>
+
+    <form id="apr0002Form" class="needs-validation" th:action="@{/}"  th:object="${apr0002Form}" method="post" novalidate>
+
+        <div class="row justify-content-end my-2">
+            <div class="col-md-2">
+                <a class="btn btn-outline-dark btn-block" href="S19_01_02$A.html" role="button"><i class="fas fa-download"></i><strong>Xuất đơn</strong></a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered text-nowrap mb-0"
+                   id="table"
+                   data-toggle="table"
+                   data-url="/rqt/apr0002/load-data"
+                   data-side-pagination="server"
+                   data-pagination="true"
+                   data-click-to-select="true"
+                   data-show-refresh="true"
+                   data-id-field="id"
+                   data-page-size="10">
+                <thead>
+                <tr>
+                    <th data-radio="true" align="center" valign="middle"></th>
+                    <th data-field="id" data-sortable="true">ID.</th>
+                    <th data-field="subject" data-halign="left">Tiêu đề</th>
+                    <th data-field="stepProcess" data-halign="center">Bước</th>
+                    <th data-field="amount">Số tiền</th>
+                    <th data-field="requestStatusLabel">Trạng thái</th>
+                    <th data-field="priorityLabel">Độ ưu tiên</th>
+                    <th data-field="creator" data-halign="left">Người tạo</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="row justify-content-end mt-3">
+            <div class="col-md-2 order-md-5 mb-md-0 mb-2">
+                <button id="btn-inprogress" type="button" class="btn btn-outline-dark btn-block btn-action" role="button">
+                    <i class="fas fa-spinner"></i><strong>Đang xử lý</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-4 mb-md-0 mb-2">
+                <button id="btn-approved" class="btn btn-outline-dark btn-block btn-action" type="button" role="button">
+                    <i class="fas fa-user-check"></i><strong>Phê duyệt</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-3 mb-md-0 mb-2">
+                <button id="btn-reject" class="btn btn-outline-dark btn-block btn-action" type="button" role="button">
+                    <i class="fas fa-undo"></i><strong>Từ chối</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-2 mb-md-0 mb-2">
+                <button class="btn btn-outline-dark btn-block btn-action" type="button" role="button" id="btn-reopen">
+                    <i class="fas fa-plus-square"></i><strong>Mở lại</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-2 mb-md-0 mb-2">
+                <button id="btn-cancel" class="btn btn-outline-danger btn-block btn-action" type="button" role="button">
+                    <i class="fas fa-times"></i><strong>Hủy</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-1">
+                <a class="btn btn-outline-secondary btn-block" th:href="@{/}" role="button">
+                    <i class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+            </div>
+        </div>
+
+        <input type="hidden" id="request-id-hidden" th:field="*{requestId}" th:value="*{requestId}" >
+        <input type="hidden" id="request-status-hidden" th:field="*{requestStatus}" th:value="*{requestStatus}" >
+    </form>
+
+    <script th:src="@{/js/rqt/apr0002.js}"></script>
+
+</section>

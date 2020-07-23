@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Đơn xin nghỉ phép</title>
+</head>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Đơn xin nghỉ phép</h5>
+
+    <form class="needs-validation" action="S04_01_02_(1).html" novalidate>
+
+        <div class="card card-body mb-2">
+
+            <div class="form-group row mb-2">
+                <label for="subject" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Tiêu đề</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control form-control-sm" id="subject" required>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Loại nghỉ phép</label>
+                <div class="col-md-8 form-inline">
+                    <th:block th:each="typeOff : ${T(vn.woodsland.byserp.framework.enums.ETypeOff).values()}">
+                        <div class="custom-control custom-radio form-control-sm mr-4">
+                            <input class="custom-control-input" th:id="${typeOff}" name="typeOff" th:value="${typeOff}"
+                                   type="radio" required>
+                            <label class="custom-control-label" th:text="${typeOff.label}" th:for="${typeOff}"></label>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="priority" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Độ ưu tiên</label>
+                <div class="col-md-8 form-inline">
+                    <select class="form-control form-control-sm" id="priority" name="priority" required>
+                        <option th:each="i : ${T(vn.woodsland.byserp.framework.enums.EPriority).values()}" th:value="${i}" th:text="${i.label}"
+                                th:selected="${#strings.equals(i, 'MEDIUM')}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="startTime" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">
+                    Thời gian nghỉ
+                </label>
+                <div class="col-md-10">
+                    <div class="form-inline">
+                        <div class="input-group date datetimepicker-input-group" data-target-input="nearest">
+                            <input type='text' id='startTime' data-target="#startTime" data-toggle="datetimepicker" class="form-control form-control-sm datetimepicker-input" maxlength="19" size="26" />
+                            <span class="input-group-append" data-target="#startTime" data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </span>
+                        </div>
+                        <span class="col-form-label mx-2">～</span>
+                        <div class="input-group date datetimepicker-input-group" data-target-input="nearest">
+                            <input type="text" id='endTime' class="form-control form-control-sm datetimepicker-input" data-target="#endTime" data-toggle="datetimepicker" maxlength="19" size="26">
+                            <span class="input-group-append" data-target="#endTime" data-toggle="datetimepicker">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                    <small class="text-muted">
+                        Định dạng YYYY-MM-DD HH:MM
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="backupUser" class="col-form-label col-form-label-sm required col-md-2 font-weight-bold">Người làm thay</label>
+                <div class="col-md-3">
+                    <select class="form-control form-control-sm" id="backupUser">
+                        <option value=""></option>
+                        <optgroup label="共有フォルダ1">
+                            <option value="001">2019年度新規会員登録者</option>
+                            <option value="002">2019年度継続更新会員</option>
+                            <option value="003">男性</option>
+                            <option value="004">女性</option>
+                        </optgroup>
+                        <optgroup label="共有フォルダ5">
+                            <option value="051">aaaaaaaaaaa</option>
+                            <option value="052">bbbbbbbbbbb</option>
+                            <option value="053">ccccccccccc</option>
+                            <option value="054">ddddddddddd</option>
+                        </optgroup>
+                        <optgroup label="個人フォルダ3">
+                            <option value="101">XXXXXXXXXXX</option>
+                            <option value="102">YYYYYYYYYYY</option>
+                            <option value="103">ZZZZZZZZZZZ</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row mb-0">
+                <label for="description" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Lý do nghỉ</label>
+                <div class="col-md-12">
+                    <textarea class="form-control" id="description" rows="15"
+                              placeholder="Bạn có thể nhập tối đa 1000 ký tự" required></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Người duyệt đơn</label>
+            <div class="col-md-3">
+                <input type='text' readonly value="assignedUser" class="form-control form-control-sm"/>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label for="deadline" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Thời gian mong muốn phản hồi</label>
+            <div class="col-md-3">
+                <div class="input-group date datetimepicker-input-group" data-target-input="nearest">
+                    <input type='text' id='deadline' class="form-control form-control-sm datetimepicker-input" data-toggle="datetimepicker" maxlength="19" size="19" data-target="#deadline"/>
+                    <span class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-end mt-3">
+            <div class="col-md-4 order-md-2 mb-md-0 mb-2">
+                <button class="btn btn-outline-dark btn-block" type="submit" id="confirm-submit"><i
+                        class="fas fa-save"></i><strong>Đăng ký</strong></button>
+            </div>
+            <div class="col-md-4 order-md-1">
+                <a class="btn btn-outline-secondary btn-block" href="S04_01_01.html" role="button"><i
+                        class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+            </div>
+        </div>
+
+    </form>
+
+    <script th:src="@{/js/rqt/rqt00011.js}"></script>
+</section>

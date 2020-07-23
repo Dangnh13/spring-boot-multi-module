@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Đề nghị thanh toán</title>
+</head>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Đề nghị thanh toán</h5>
+    <div th:if="${rqt0002Form.success}" class="alert alert-success" role="alert">Cập nhật thành công</div>
+
+    <form id="rqt0002Form" class="needs-validation" th:action="@{/}"  th:object="${rqt0002Form}" method="post" novalidate>
+
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered text-nowrap mb-0"
+                   id="table"
+                   data-toggle="table"
+                   data-url="/rqt/rqt0002/load-data"
+                   data-side-pagination="server"
+                   data-pagination="true"
+                   data-click-to-select="true"
+                   data-show-refresh="true"
+                   data-id-field="id"
+                   data-page-size="10">
+                <thead>
+                <tr>
+                    <th data-radio="true" align="center" valign="middle" ></th>
+                    <th data-field="id">No.</th>
+                    <th data-field="subject" data-halign="left">Tiêu đề</th>
+                    <th data-field="amount" data-halign="center">Số tiền</th>
+                    <th data-field="stepProcess" data-halign="center">Bước</th>
+                    <th data-field="requestStatusLabel">Trạng thái</th>
+                    <th data-field="assignedUser" data-halign="left">Người được giao</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="row justify-content-end mt-3">
+            <div class="col-md-2 order-md-5 mb-md-0 mb-2">
+                <a class="btn btn-outline-dark btn-block" th:href="@{/rqt/rqt00021/init}" role="button">
+                    <i class="fas fa-plus-square"></i><strong>Tạo mới</strong>
+                </a>
+            </div>
+            <div class="col-md-2 order-md-4 mb-md-0 mb-2">
+                <button class="btn btn-outline-dark btn-block btn-action" type="button" role="button" id="btn-update">
+                    <i class="fas fa-plus-square"></i><strong>Chỉnh sửa</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-3 mb-md-0 mb-2">
+                <button class="btn btn-outline-dark btn-block btn-action" type="button" role="button" id="btn-reopen">
+                    <i class="fas fa-plus-square"></i><strong>Mở lại</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-2 mb-md-0 mb-2">
+                <button class="btn btn-outline-danger btn-block btn-action" type="button" role="button" id="btn-delete-confirm">
+                    <i class="fas fa-times"></i><strong>Xóa yêu cầu</strong>
+                </button>
+            </div>
+            <div class="col-md-2 order-md-1">
+                <a class="btn btn-outline-secondary btn-block" th:href="@{/}" role="button"><i class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="removeModalLabel">Bạn có thực sự muốn xóa?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-primary" id="btn-delete">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="request-id-hidden" th:field="*{requestId}" th:value="*{requestId}" >
+        <input type="hidden" id="request-status-hidden" th:field="*{requestStatus}" th:value="*{requestStatus}" >
+    </form>
+
+    <script th:inline="javascript">
+        var principleName = /*[[${#authentication.principal.name}]]*/;
+    </script>
+
+    <script th:src="@{/js/rqt/rqt0002.js}"></script>
+</section>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.woodsland.byserp.persistence.dao.custom.suggestion.CustomPaymentOrderMapper">
+    <resultMap id="SearchPaymentOrderModal" type="vn.woodsland.byserp.domain.modal.suggestion.SearchPaymentOrderModal">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="subject" jdbcType="VARCHAR" property="subject" />
+        <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+        <result column="amount" jdbcType="NUMERIC" property="amount" />
+        <result column="priority" jdbcType="VARCHAR" property="priority"/>
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="step" jdbcType="SMALLINT" property="step"/>
+        <result column="total_step" jdbcType="SMALLINT" property="totalStep"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="request_status" jdbcType="VARCHAR" property="requestStatus"/>
+        <result column="assigned_user" jdbcType="VARCHAR" property="assignedUser"/>
+        <result column="payment_date" jdbcType="DATE" property="paymentDate" />
+
+        <result column="fullname" jdbcType="VARCHAR" property="fullname"/>
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="position" jdbcType="SMALLINT" property="position" />
+
+        <result column="creator_fullname" jdbcType="VARCHAR" property="creatorFullname"/>
+        <result column="creator_email" jdbcType="VARCHAR" property="creatorEmail" />
+        <result column="creator_position" jdbcType="SMALLINT" property="creatorPosition" />
+
+        <result column="uap" jdbcType="VARCHAR" property="uap"/>
+        <result column="uap_fullname" jdbcType="VARCHAR" property="uapFullname"/>
+        <result column="uap_email" jdbcType="VARCHAR" property="uapEmail" />
+        <result column="uap_position" jdbcType="SMALLINT" property="uapPosition" />
+    </resultMap>
+
+    <resultMap id="SearchPOApprovedModal"
+               type="vn.woodsland.byserp.domain.modal.suggestion.SearchPOApprovedModal">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="subject" jdbcType="VARCHAR" property="subject" />
+        <result column="step" jdbcType="SMALLINT" property="step"/>
+        <result column="total_step" jdbcType="SMALLINT" property="totalStep"/>
+        <result column="amount" jdbcType="NUMERIC" property="amount" />
+        <result column="request_status" jdbcType="VARCHAR" property="requestStatus"/>
+        <result column="priority" jdbcType="VARCHAR" property="priority"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+    </resultMap>
+
+    <select id="searchPaymentOrder" resultMap="SearchPaymentOrderModal"
+            parameterType="vn.woodsland.byserp.dto.suggestion.prm.SearchPaymentOrderPrm">
+        SELECT
+            rq."id",
+            rq.subject,
+            rq.deadline,
+            po.amount,
+            rq.priority,
+            rq.description,
+            rq.step,
+            rqt.total_step,
+            rq.creator,
+            rq.request_status,
+            rq.assigned_user,
+            po.payment_date,
+            usr.fullname,
+            usr.email,
+            usr.position,
+            user_creator.fullname creator_fullname,
+            user_creator.email creator_email,
+            user_creator."position"  creator_position,
+
+            uap.username uap,
+            uap.fullname uap_fullname,
+            uap.email uap_email,
+            uap."position" uap_position
+
+        FROM
+            payment_order po
+            LEFT JOIN attachment atm ON po.request_id = atm.request_id AND atm.table_id = #{ tableId, jdbcType = VARCHAR }
+            INNER JOIN request rq ON po.request_id = rq."id"
+            INNER JOIN request_type rqt ON rqt."id" = rq.request_type_id AND rqt."id" = #{ requestType, jdbcType = VARCHAR }
+            INNER JOIN users usr ON rq.assigned_user = usr.username
+            INNER JOIN users user_creator ON rq.creator = user_creator.username
+            LEFT JOIN users uap on rq.user_approved_prev = uap.username
+        WHERE
+            1 = 1
+            <if test="username != null">
+                AND rq.creator = #{username, jdbcType=VARCHAR}
+            </if>
+            <if test="requestId != null">
+                AND rq.id = #{requestId, jdbcType=VARCHAR}
+            </if>
+            <if test="assignedUser != null">
+                AND rq.assigned_user = #{assignedUser, jdbcType = VARCHAR }
+            </if>
+
+        ORDER BY
+            rq.updated DESC
+    </select>
+
+    <select id="searchPOApproved" resultMap="SearchPOApprovedModal"
+            parameterType="vn.woodsland.byserp.dto.suggestion.prm.SearchPOApprovedPrm">
+        SELECT
+            rq."id",
+            rq.subject,
+            rq.step,
+            rqt.total_step,
+            po.amount,
+            rq.request_status,
+            rq.priority,
+            rq.creator
+        FROM
+            payment_order po
+            LEFT JOIN attachment atm ON po.request_id = atm.request_id
+            AND atm.table_id = #{ tableId, jdbcType = VARCHAR }
+            INNER JOIN request rq ON po.request_id = rq."id"
+            INNER JOIN request_type rqt ON rqt."id" = rq.request_type_id
+            AND rqt."id" = rq.request_type_id AND rqt."id" = #{ requestType, jdbcType = VARCHAR }
+            INNER JOIN users usr ON rq.assigned_user = usr.username
+        WHERE
+            1 = 1
+            AND rq.assigned_user = #{ assignedUser, jdbcType = VARCHAR }
+            AND rq.creator != #{ assignedUser, jdbcType = VARCHAR }
+        ORDER BY
+            rq.updated DESC
+    </select>
+
+</mapper>

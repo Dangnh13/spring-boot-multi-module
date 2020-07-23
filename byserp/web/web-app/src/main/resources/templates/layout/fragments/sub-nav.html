@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:fragment="element(active, href, icon, label)">
+    <a class="nav-link px-2 px-md-3" th:classappend="${active ? 'active' : ''}" th:href="@{${href}}">
+        <i th:class="${icon}"></i><span th:text="${label}"></span>
+    </a>
+</th:block>
+</html>

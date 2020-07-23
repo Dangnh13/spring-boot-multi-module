@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="vn/woodsland/byserp/logging/config.xml" />
+	<include resource="vn/woodsland/byserp/logging/console-appender.xml" />
+	<include resource="vn/woodsland/byserp/logging/file-appender.xml" />
+
+	<springProfile name="default">
+		<include resource="vn/woodsland/byserp/logging/logback-default.xml" />
+	</springProfile>
+
+	<springProfile name="dev">
+		<include resource="vn/woodsland/byserp/logging/logback-dev.xml" />
+	</springProfile>
+
+	<springProfile name="prod">
+		<include resource="vn/woodsland/byserp/logging/logback-prod.xml" />
+	</springProfile>
+
+</configuration>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đăng nhập hệ thống BYSERP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="apple-touch-icon" sizes="57x57" th:href="@{/img/favicon/apple-icon-57x57.png}">
+    <link rel="apple-touch-icon" sizes="60x60" th:href="@{/img/favicon/apple-icon-60x60.png}">
+    <link rel="apple-touch-icon" sizes="72x72" th:href="@{/img/favicon/apple-icon-72x72.png}">
+    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/img/favicon/apple-icon-76x76.png}">
+    <link rel="apple-touch-icon" sizes="114x114" th:href="@{/img/favicon/apple-icon-114x114.png}">
+    <link rel="apple-touch-icon" sizes="120x120" th:href="@{/img/favicon/apple-icon-120x120.png}">
+    <link rel="apple-touch-icon" sizes="144x144" th:href="@{/img/favicon/apple-icon-144x144.png}">
+    <link rel="apple-touch-icon" sizes="152x152" th:href="@{/img/favicon/apple-icon-152x152.png}">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/img/favicon/apple-icon-180x180.png}">
+    <link rel="icon" type="image/png" sizes="192x192"  th:href="@{/img/favicon/android-icon-192x192.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/img/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="96x96" th:href="@{/img/favicon/favicon-96x96.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/img/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/img/favicon/manifest.json}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+    <link th:href="@{/css/S01_01_01.css}" rel="stylesheet">
+    <script th:src="@{/js/index.js}"></script>
+</head>
+
+<body>
+<header>
+    <i class="las la-battery-three-quarters"></i>
+    <div class="container">
+        <h3 class="site-logo">
+            <a href="#">
+                <img th:src="@{/img/logo.png}" alt="Hệ thống BYSERP">
+                Hệ thống BYSERP
+            </a>
+        </h3>
+    </div>
+    <div class="navbar" style="padding: 1rem 1rem;">
+        &nbsp;
+    </div>
+</header>
+
+
+<main role="main">
+    <div class="container">
+        <article>
+
+            <section>
+
+                <div class="row justify-content-center">
+                    <form class="needs-validation" th:action="@{/login}" method="post">
+
+                        <div class="form-login">
+                            <div class="text-center">
+                                <img class="mb-4" th:src="@{/img/logo.png}" alt="" width="110" height="72">
+                                <h1 class="h5 mb-3 font-weight-normal">Vui lòng nhập ID đăng nhập và mật khẩu của
+                                    bạn!</h1>
+                            </div>
+
+                            <div>
+                                <label for="loginId" class="sr-only">ID</label>
+                                <input type="text" name="username" id="loginId" class="form-control form-control-sm"
+                                       placeholder="ID" required autofocus>
+
+                                <label for="password" class="sr-only">Mật khẩu</label>
+                                <input type="password" name="password" id="password"
+                                       class="form-control form-control-sm"
+                                       placeholder="Mật khẩu" required>
+                                <div th:if="${error}" class="alert alert-danger">
+                                    <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION]}"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center mt-3">
+                            <div class="col-md-6 order-md-2 mb-md-0 mb-2">
+                                <button class="btn btn-primary btn-block" type="submit">
+                                    <i class="fas fa-sign-in-alt"></i><span class="font-weight-bold">Đăng nhập</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div class="nav-footer">
+        <div class="container">
+            <nav class="nav justify-content-end">
+                <a class="nav-link text-light" href="C00_04.html">FAQ</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/validation.js}"></script>
+
+</body>
+</html>

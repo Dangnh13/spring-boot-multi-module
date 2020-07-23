@@ -1,0 +1,90 @@
+server:
+  port: ${PORT:9000}
+  servlet:
+    context-path: /auth
+  http2:
+    enabled: true
+
+#*******************************************************************************
+#                           Spring configuration
+#******************************************************************************/
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    check-template: true
+    check-template-location: true
+  messages:
+    basename: messages,errors,web-messages
+    encoding: UTF-8
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: -1
+      max-request-size: -1
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: test.mail.byserp@gmail.com
+    password: testmail
+    protocol: smtp
+    properties.mail.smtp:
+      auth: false
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+  freemarker:
+    charset: UTF-8
+    content-type: text/html
+    template-loader-path: classpath:/vn/woodsland/byserp/mail/templates/
+
+  #*******************************************************************************
+  #                           Config Data source
+  #******************************************************************************/
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/eoffice?stringtype=unspecified
+    username: postgres
+    password: postgresql
+    hikari:
+      # Optimize max connection pool: amount = ((core_count * 2) + effective_spindle_count)
+      maximum-pool-size: 10
+
+#*******************************************************************************
+#                           Config mybatis
+#******************************************************************************/
+mybatis:
+  check-config-location: true
+  mapper-locations: classpath*:vn/woodsland/byserp/persistence/dao/**/*.xml
+  configuration:
+    default-fetch-size: 100
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    cache-enabled: false
+    lazy-loading-enabled: true
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    use-generated-keys: false
+    auto-mapping-behavior: partial
+    safe-row-bounds-enabled: false
+    local-cache-scope: session
+    jdbc-type-for-null: other
+    lazy-load-trigger-methods: equals,clone,hashCode,toString
+    aggressive-lazy-loading: false
+# Mybatis paging
+pagehelper:
+  auto-dialect: true
+  support-methods-arguments: true
+
+# Actuator config
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, mappings
+  metrics:
+    export:
+      atlas:
+        enabled: false

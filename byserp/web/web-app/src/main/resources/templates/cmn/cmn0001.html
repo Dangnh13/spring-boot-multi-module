@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Trang chủ</title>
+</head>
+
+<section layout:fragment="content">
+    <div class="card-columns">
+        <div class="card">
+            <div class="card-header text-dark py-1 font-weight-bold">
+                <i class="fas fa-user"></i>Thông tin nhân viên
+            </div>
+            <table class="table mb-0">
+                <tbody>
+                <tr>
+                    <td class="small py-0 border-top-0 border-right" scope="row">Nhân viên</td>
+                    <td class="small py-0 border-top-0" scope="row"><span sec:authentication="name"> </span></td>
+                </tr>
+                <tr>
+                    <td class="small py-0 border-right" scope="row">Chi nhánh</td>
+                    <td class="small py-0" scope="row">
+                        <a href="#">Thuận Hưng
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="small py-0 border-right" scope="row">Ngày giờ đăng nhập cuối cùng</td>
+                    <td class="small py-0" scope="row">2019-02-05 16:23:34</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <div class="card-header text-dark py-1 font-weight-bold">
+                <i class="fas fa-cogs"></i>Quản trị hệ thống
+            </div>
+            <div class="card-body">
+                <p class="card-text">Quản lý thông tin tổng thể.</p>
+                <p class="card-text">
+                    <a class="card-link" th:href="@{/cmn/cmn0002/init}">
+                        <i class="fas fa-globe fa-fw"></i>
+                        Quản lý chi nhánh
+                    </a>
+                </p>
+                <p class="card-text">
+                    <a class="card-link" href="S16_02_01.html">
+                        <i class="fas fa-list-alt fa-fw"></i>
+                        Quản lý phòng ban
+                    </a>
+                </p>
+                <p class="card-text">
+                    <a class="card-link" th:href="@{/cmn/cmn0005/init}">
+                        <i class="fas fa-tasks fa-fw"></i>
+                        Quản lý các loại yêu cầu
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header text-dark py-1 font-weight-bold">
+                <i class="fas fa-cogs"></i>Yêu cầu
+            </div>
+            <div class="card-body">
+                <p class="card-text">Tạo và quản lý các yêu cầu.</p>
+                <p class="card-text"><a class="card-link" th:href="@{/rqt/rqt0001/init}"><i class="far fa-envelope-open fa-fw"></i>Đơn xin nghỉ phép</a></p>
+                <p class="card-text"><a class="card-link" th:href="@{/rqt/rqt0002/init}"><i class="fas fa-money-check-alt fa-fw"></i>Đề nghị thanh toán</a></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header text-dark py-1 font-weight-bold">
+                <i class="fas fa-cogs"></i>Phê duyệt
+            </div>
+            <div class="card-body">
+                <p class="card-text">Phê duyệt các yêu cầu.</p>
+                <p class="card-text"><a class="card-link" th:href="@{/rqt/rqt0001/init}"><i class="fas fa-envelope-open-text fa-fw"></i>Đơn xin nghỉ phép</a></p>
+                <p class="card-text"><a class="card-link" th:href="@{/rqt/apr0002/init}"><i class="fas fa-money-check-alt fa-fw"></i>Đề nghị thanh toán</a></p>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>

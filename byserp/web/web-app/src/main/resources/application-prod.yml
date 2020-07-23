@@ -1,0 +1,53 @@
+server:
+  port: ${PORT:8081}
+#*******************************************************************************
+#                           System configuration
+#******************************************************************************/
+system:
+  domain-server: ${DOMAIN_SERVER}
+  security:
+    oauth2:
+      client-id: ${CLIENT_ID}
+      client-secret: ${CLIENT_SECRET}
+      auth-server: ${AUTH_SERVER}
+      auth-server-public: ${AUTH_SERVER_PUBLIC}
+
+#*******************************************************************************
+#                           Spring configuration
+#******************************************************************************/
+spring:
+  messages:
+    basename: messages,web-messages
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: -1
+      max-request-size: -1
+
+  #*******************************************************************************
+  #                           Security
+  #******************************************************************************/
+  security:
+    oauth2:
+      client:
+        registration:
+          web-client:
+            client-id: ${system.security.oauth2.client-id}
+            client-secret: ${system.security.oauth2.client-secret}
+            client-name: Auth Server
+            scope: read,write
+            provider: oauth2-provider
+            redirect-uri: ${system.domain-server}/login/oauth2/code/
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          oauth2-provider:
+            token-uri: ${system.security.oauth2.auth-server}/auth/oauth/token
+            authorization-uri: ${system.security.oauth2.auth-server-public}/auth/oauth/authorize
+            user-info-uri: ${system.security.oauth2.auth-server}/auth/user/me
+            user-name-attribute: name
+
+### Logging settings
+logging:
+  file:
+    path: ${LOG_PATH}

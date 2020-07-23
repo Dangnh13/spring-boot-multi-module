@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Đề nghị thanh toán</title>
+</head>
+
+<section layout:fragment="content">
+
+    <h5 class="page-title">Đề nghị thanh toán</h5>
+
+    <div th:if="${success}" class="alert alert-success" role="alert">Tạo đơn thành công</div>
+
+    <form class="needs-validation" th:action="@{/rqt/rqt00021/save}" th:object="${rqt00021Form}" enctype="multipart/form-data" method="post">
+
+        <div class="card card-body mb-2">
+
+            <div class="form-group row mb-2">
+                <label for="subject" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Tiêu đề</label>
+                <div class="col-md-10">
+                    <input type="text" th:field="*{subject}" th:value="*{subject}" th:id="subject" class="form-control form-control-sm" required>
+                    <small th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="paymentDate" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Ngày thanh toán</label>
+                <div class="col-md-3">
+                    <div id="paymentDate"  class="input-group date datetimepicker-input-group" data-target-input="nearest">
+                        <input type='text' th:field="*{paymentDate}" th:value="*{paymentDate}" class="form-control form-control-sm datetimepicker-input" data-toggle="datetimepicker" maxlength="19" size="19" data-target="#paymentDate"/>
+                        <span class="input-group-append" data-target="#paymentDate" data-toggle="datetimepicker">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <small th:if="${#fields.hasErrors('paymentDate')}" th:errors="*{paymentDate}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="amount" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Số tiền</label>
+                <div class="col-md-3">
+                    <input type="number" th:field="*{amount}" th:value="*{amount}" th:id="amount" class="form-control form-control-sm" required>
+                </div>
+                <div class="col-md-3">
+                    <small th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="priority" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Độ ưu tiên</label>
+                <div class="col-md-8 form-inline">
+                    <select class="form-control form-control-sm" th:field="*{priority}" th:id="priority" required>
+                        <option th:each="i : ${T(vn.woodsland.byserp.framework.enums.EPriority).values()}" th:value="${i}" th:text="${i.label}"
+                                th:selected="${#strings.equals(i, 'MEDIUM')}"></option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="description" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Nội dung</label>
+                <div class="col-md-12">
+                    <textarea th:field="*{description}" th:value="*{description}" th:id="description" class="form-control" rows="10"
+                              placeholder="Bạn có thể nhập tối đa 1000 ký tự" required></textarea>
+                    <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-form-label col-form-label-sm col-md-2 font-weight-bold">Chứng từ gốc</label>
+                <div class="col-md-12 input-group">
+                    <div class="custom-file">
+                        <input type="file" th:field="*{documents}" th:value="*{documents}" th:id="documents" multiple class="custom-file-input" >
+                        <label class="custom-file-label" id="document-labels" th:for="documents">Chọn files...</label>
+                        <small th:if="${#fields.hasErrors('documents')}" th:errors="*{documents}" class="text-danger">
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Người duyệt đơn</label>
+                <div class="col-md-3">
+                    <input type='text' th:field="*{email}" th:value="*{email}" th:id="email" class="form-control form-control-sm"/>
+                    <input type='hidden' th:field="*{assignedUser}" th:value="*{assignedUser}" th:id="assignedUser" class="form-control form-control-sm"/>
+                    <small id="assigned-user-desc" class="text-muted">
+                        <th:block th:if="${not #strings.isEmpty(rqt00021Form.assignedUser)}">
+                            <span th:text="*{fullname}"></span>-<span th:text="*{position}"></span>
+                        </th:block>
+                    </small>
+                    <input type='hidden' th:field="*{fullname}" th:value="*{fullname}" th:id="fullname" class="form-control form-control-sm"/>
+                    <input type='hidden' th:field="*{position}" th:value="*{position}" th:id="position" class="form-control form-control-sm"/>
+                </div>
+                <div class="col-md-3">
+                    <small th:if="${#fields.hasErrors('assignedUser')}" th:errors="*{assignedUser}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="deadline" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Thời gian mong muốn phản hồi</label>
+                <div class="col-md-3">
+                    <div id="deadline" class="input-group date datetimepicker-input-group" data-target-input="nearest">
+                        <input type='text' th:field="*{deadline}" th:value="*{deadline}" class="form-control form-control-sm datetimepicker-input" data-toggle="datetimepicker" maxlength="19" size="19" data-target="#deadline"/>
+                        <span class="input-group-append" data-target="#deadline" data-toggle="datetimepicker">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <small th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="row justify-content-end mt-3">
+                <div class="col-md-4 order-md-2 mb-md-0 mb-2">
+                    <button class="btn btn-outline-dark btn-block" type="submit" id="confirm-submit"><i
+                            class="fas fa-save"></i><strong>Đăng ký</strong></button>
+                </div>
+                <div class="col-md-4 order-md-1">
+                    <a class="btn btn-outline-secondary btn-block" th:href="@{/rqt/rqt0002/init}" role="button"><i
+                            class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script th:src="@{/webjars/Bootstrap-3-Typeahead/3.1.1/bootstrap3-typeahead.js}"></script>
+    <script th:src="@{/js/rqt/rqt00021.js}"></script>
+</section>

@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BYSERP SYSTEM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!--link rel="icon" href="/kr-mock/favicon.ico" type="image/x-icon"-->
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <h4 class="site-logo d-none d-md-block">
+        <span>
+          <img src="img/site-icon.svg" alt="BYSERP SYSTEM">
+          BYSERP SYSTEM
+        </span>
+        </h4>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+        <span class="navbar-brand brand-logo d-md-none">
+          <img src="img/site-icon.svg" alt="BYSERP SYSTEM">
+          BYSERP SYSTEM
+        </span>
+            <p class="d-none d-md-block">
+                &nbsp;
+            </p>
+    </nav>
+
+</header>
+
+
+<main role="main">
+
+    hello  [[${demo}]]!
+    <a th:href="@{/login}">LOGIN</a>
+    <span th:utext="${demo}"></span>
+    <span th:text="#{registration.accepted.keyItem.NotBlank.message('dangnh')}"></span>
+    <span th:text="${#request.getAttribute('demo')}">US</span>
+    <a th:href="@{/order/details(orderId=${demo})}">view</a>
+    <p>The year is <span th:text="2013">1492</span>.</p>
+    <p>In two years, it will be <span th:text="2013 + 2">1494</span>.</p>
+   <!-- <p>
+        Today is: <span th:with="df=#{date.format}" th:text="${#calendars.format(today,df)}">13 February 2011</span>
+    </p>-->
+
+    <div class="container">
+        <article>
+            <section>
+                <table border="1" cellspacing="0" cellpadding="5">
+                    <tr>
+                        <th>画面ID</th>
+                        <th>アイコン</th>
+                        <th>画面名称</th>
+                        <th>運用スタッフ</th>
+                        <th>管理スタッフ</th>
+                        <th>管理者</th>
+                        <th>済</th>
+                        <th>備考</th>
+                    </tr>
+                    <tr>
+                        <td>S01_01_01</td>
+                        <td></td>
+                        <td><a href="S01_01_01.html" target="_new">ログイン</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>アイコンは、作成後に差し替えてください。</td>
+                    </tr>
+                    <tr>
+                        <td>S01_01_02</td>
+                        <td>-</td>
+                        <td><a href="S01_01_02.html" target="_new">ログアウト</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S02_01_01</td>
+                        <td></td>
+                        <td><a href="S02_01_01.html" target="_new">サイト選択</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S02_01_02</td>
+                        <td><i class="fas fa-home"></i></td>
+                        <td><a href="S02_01_02.html" target="_new">メニュー</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>管理者/スタッフのすべてのメニューを表示している</td>
+                    </tr>
+                    <tr>
+                        <td>S03_01_01</td>
+                        <td><i class="fas fa-address-card"></i></td>
+                        <td><a href="S03_01_01.html" target="_new">スタッフ情報更新</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S03_01_02</td>
+                        <td>-</td>
+                        <td><a href="S03_01_02.html" target="_new">スタッフ情報確認</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S03_02_01</td>
+                        <td><i class="fas fa-envelope"></i></td>
+                        <td><a href="S03_02_01.html" target="_new">メールアドレス変更</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S03_03_01</td>
+                        <td><i class="fas fa-key"></i></td>
+                        <td><a href="S03_03_01.html" target="_new">パスワード変更</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S03_04_01</td>
+                        <td><i class="fas fa-qrcode"></i></td>
+                        <td><a href="S03_04_01.html" target="_new">OTPアプリ登録</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用 (ソース提供予定)</td>
+                    </tr>
+                    <tr>
+                        <td>S03_04_02</td>
+                        <td><i class="fas fa-unlock-alt"></i></td>
+                        <td><a href="S03_04_02.html" target="_new">緊急用パスコード</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用 (ソース提供予定)</td>
+                    </tr>
+                    <tr>
+                        <td>S04_01_01</td>
+                        <td><i class="fas fa-newspaper"></i></td>
+                        <td><a href="S04_01_01.html" target="_new">お知らせ一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S04_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S04_01_02$A.html" target="_new">お知らせ登録</a><br>
+                            <a href="S04_01_02$E.html" target="_new">お知らせ更新</a>
+                        </td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S04_02_01</td>
+                        <td><i class="fas fa-list"></i></td>
+                        <td><a href="S04_02_01.html" target="_new">カテゴリー一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S04_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S04_02_02$A.html" target="_new">カテゴリー登録</a><br>
+                            <a href="S04_02_02$E.html" target="_new">カテゴリー更新</a>
+                        </td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S04_03_01</td>
+                        <td><i class="fas fa-blog"></i></td>
+                        <td><a href="S04_03_01.html" target="_new">スタッフブログ一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S04_03_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S04_03_02$A.html" target="_new">スタッフブログ登録</a><br>
+                            <a href="S04_03_02$E.html" target="_new">スタッフブログ更新</a>
+                        </td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S05_01_01</td>
+                        <td><i class="fas fa-th-list"></i></td>
+                        <td><a href="S05_01_01.html" target="_new">お問い合わせ一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S05_01_02</td>
+                        <td>-</td>
+                        <td><a href="S05_01_02.html" target="_new">お問い合わせ回答・更新</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S05_02_01</td>
+                        <td><i class="fas fa-tasks"></i></td>
+                        <td><a href="S05_02_01.html" target="_new">投票一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S05_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S05_02_02$A.html" target="_new">投票登録</a><br>
+                            <a href="S05_02_02$E.html" target="_new">投票更新</a>
+                        </td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S05_02_03</td>
+                        <td>-</td>
+                        <td><a href="S05_02_03.html" target="_new">投票結果登録・更新</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S05_02_04</td>
+                        <td>-</td>
+                        <td><a href="S05_02_04.html" target="_new">投票結果一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S06_01_01</td>
+                        <td><i class="fas fa-book"></i></td>
+                        <td><a href="S06_01_01.html" target="_new">電子書籍一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S06_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S06_01_02$A.html" target="_new">電子書籍登録</a><br>
+                            <a href="S06_01_02$E.html" target="_new">電子書籍更新</a>
+                        </td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S06_01_03</td>
+                        <td>-</td>
+                        <td><a href="S06_01_03.html" target="_new">電子書籍閲覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S06_02_01</td>
+                        <td><i class="fas fa-address-book"></i></td>
+                        <td><a href="S06_02_01.html" target="_new">アルバム一覧</a></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S06_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S06_02_02$A.html" target="_new">アルバム登録・更新</a><br>
+                            <a href="S06_02_02$E.html" target="_new">アルバム登録・更新</a>
+                        </td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_01_01</td>
+                        <td><i class="fas fa-yen-sign"></i></td>
+                        <td><a href="S07_01_01.html" target="_new">決済情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S07_01_02$A.html" target="_new">決済情報登録</a><br>
+                            <a href="S07_01_02$E.html" target="_new">決済情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_02_01</td>
+                        <td><i class="fas fa-gifts"></i></td>
+                        <td><a href="S07_02_01.html" target="_new">商品マスタ一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S07_02_02$A.html" target="_new">商品マスタ登録</a><br>
+                            <a href="S07_02_02$E.html" target="_new">商品マスタ更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_03_01</td>
+                        <td><i class="fas fa-ticket-alt"></i></td>
+                        <td><a href="S07_03_01.html" target="_new">チケット情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_03_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S07_03_02$A.html" target="_new">チケット情報登録</a><br>
+                            <a href="S07_03_02$E.html" target="_new">チケット情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_03_03</td>
+                        <td>-</td>
+                        <td><a href="S07_03_03.html" target="_new">チケット一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_03_04</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S07_03_04$A.html" target="_new">チケット登録</a><br>
+                            <a href="S07_03_04E.html" target="_new">チケット更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_04_01</td>
+                        <td><i class="fas fa-search-dollar"></i></td>
+                        <td><a href="S07_04_01.html" target="_new">決済情報検索</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_04_02</td>
+                        <td>-</td>
+                        <td><a href="S07_04_02.html" target="_new">決済情報検索結果</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_05_01</td>
+                        <td><i class="fas fa-search"></i></td>
+                        <td><a href="S07_05_01.html" target="_new">配送検索</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S07_05_02</td>
+                        <td>-</td>
+                        <td><a href="S07_05_02.html" target="_new">配送検索結果</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_01_01</td>
+                        <td><i class="fas fa-dice"></i></td>
+                        <td><a href="S08_01_01.html" target="_new">ガチャ情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S08_01_02$A.html" target="_new">ガチャ情報登録</a><br>
+                            <a href="S08_01_02$E.html" target="_new">ガチャ情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_02_01</td>
+                        <td>-</td>
+                        <td><a href="S08_02_01.html" target="_new">ガチャ賞一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S08_02_02$A.html" target="_new">ガチャ賞登録・更新</a><br>
+                            <a href="S08_02_02$E.html" target="_new">ガチャ賞登録・更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_02_03</td>
+                        <td>-</td>
+                        <td><a href="S08_02_03.html" target="_new">ガチャアイテム一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_02_04</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S08_02_04$A.html" target="_new">ガチャアイテム情報登録</a><br>
+                            <a href="S08_02_04$E.html" target="_new">ガチャアイテム情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_03_01</td>
+                        <td><i class="fas fa-search"></i></td>
+                        <td><a href="S08_03_01.html" target="_new">ガチャ券検索</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_03_02</td>
+                        <td>-</td>
+                        <td><a href="S08_03_02.html" target="_new">ガチャ券検索結果</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_04_01</td>
+                        <td><i class="fas fa-ticket-alt"></i></td>
+                        <td><a href="S08_04_01.html" target="_new">ガチャ券付与一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S08_04_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S08_04_02$A.html" target="_new">ガチャ券付与登録</a><br>
+                            <a href="S08_04_02$E.html" target="_new">ガチャ券付与更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S09_01_01</td>
+                        <td><i class="fas fa-search"></i></td>
+                        <td><a href="S09_01_01.html" target="_new">ポイント検索</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S09_01_02</td>
+                        <td>-</td>
+                        <td><a href="S09_01_02.html" target="_new">ポイント検索結果</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S09_02_01</td>
+                        <td><i class="fas fa-dollar-sign"></i></td>
+                        <td><a href="S09_02_01.html" target="_new">ポイント付与一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S09_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S09_02_02$A.html" target="_new">ポイント付与登録</a><br>
+                            <a href="S09_02_02$E.html" target="_new">ポイント付与更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S09_03_01</td>
+                        <td><i class="fas fa-exchange-alt"></i></td>
+                        <td><a href="S09_03_01.html" target="_new">イベント換算情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S09_03_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S09_03_02$A.html" target="_new">イベント換算情報登録</a><br>
+                            <a href="S09_03_02$E.html" target="_new">イベント換算情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S10_01_01</td>
+                        <td><i class="fas fa-project-diagram"</i></td>
+                        <td><a href="S10_01_01.html" target="_new">静的コンテンツ一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S10_01_02$A.html" target="_new">静的コンテンツ追加</a><br>
+                            <a href="S10_01_02$E.html" target="_new">静的コンテンツ編集</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_01_03</td>
+                        <td>-</td>
+                        <td><a href="S10_01_03.html" target="_new">静的コンテンツレビジョン一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_01_04</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S10_01_04$A.html" target="_new">コンテンツデータ追加</a><br>
+                            <a href="S10_01_04$E.html" target="_new">コンテンツデータ編集</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>
+                            ナビゲーションはスタッフ用<br>
+                            『アップロード』、『ダウンロード』ボタンの処理未実装
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>S10_02_01</td>
+                        <td><i class="fab fa-css3-alt"></i></td>
+                        <td><a href="S10_02_01.html" target="_new">CSS一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_02_02</td>
+                        <td>-</td>
+                        <td><a href="S10_02_02.html" target="_new">CSS追加・編集</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_02_03</td>
+                        <td>-</td>
+                        <td><a href="S10_02_03.html" target="_new">CSSレビジョン一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_02_04</td>
+                        <td>-</td>
+                        <td><a href="S10_02_04.html" target="_new">CSSデータ追加・編集</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_03_01</td>
+                        <td><i class="fab fa-js-square"></i></td>
+                        <td><a href="S10_03_01.html" target="_new">JavaScript一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_03_02</td>
+                        <td>-</td>
+                        <td><a href="S10_03_02.html" target="_new">JavaScript登録・更新</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_03_03</td>
+                        <td>-</td>
+                        <td><a href="S10_03_03.html" target="_new">JavaScriptレビジョン一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_03_04</td>
+                        <td>-</td>
+                        <td><a href="S10_03_04.html" target="_new">JavaScriptデータ追加・編集</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_04_01</td>
+                        <td><i class="fas fa-images"></i></td>
+                        <td><a href="S10_04_01.html" target="_new">画像一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_04_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S10_04_02$A.html" target="_new">画像登録</a><br>
+                            <a href="S10_04_02$E.html" target="_new">画像更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_04_03</td>
+                        <td>-</td>
+                        <td><a href="S10_04_03.html" target="_new">画像レビジョン一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S10_04_04</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S10_04_04$A.html" target="_new">画像データ追加</a><br>
+                            <a href="S10_04_04$E.html" target="_new">画像データ編集</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td>ナビゲーションはスタッフ用</td>
+                    </tr>
+                    <tr>
+                        <td>S11_01_01</td>
+                        <td><i class="fas fa-id-card"></i></td>
+                        <td><a href="S11_01_01.html" target="_new">会員証一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S11_01_02$A.html" target="_new">会員証登録</a><br>
+                            <a href="S11_01_02$E.html" target="_new">会員証更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_01_03</td>
+                        <td><i class="far fa-address-card"></i></td>
+                        <td><a href="S11_01_03.html" target="_new">会員証画像一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_01_04</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S11_01_04$A.html" target="_new">会員証画像登録</a><br>
+                            <a href="S11_01_04$E.html" target="_new">会員証画像更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_02_01</td>
+                        <td><i class="fas fa-mars"></i></td>
+                        <td><a href="S11_02_01.html" target="_new">会員証キャラ一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S11_02_02$A.html" target="_new">会員証キャラ登録</a><br>
+                            <a href="S11_02_02$E.html" target="_new">会員証キャラ更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_03_01</td>
+                        <td><i class="fas fa-venus"></i></td>
+                        <td><a href="S11_03_01.html" target="_new">サイトキャラ一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_03_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S11_03_02$A.html" target="_new">サイトキャラ情報登録</a><br>
+                            <a href="S11_03_02$E.html" target="_new">サイトキャラ情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_04_01</td>
+                        <td><i class="fas fa-birthday-cake"></i></td>
+                        <td><a href="S11_04_01.html" target="_new">記念日カード一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_04_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S11_04_02$A.html" target="_new">記念日カード登録</a><br>
+                            <a href="S11_04_02$E.html" target="_new">記念日カード更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_04_03</td>
+                        <td><i class="far fa-address-card"></i></td>
+                        <td><a href="S11_04_03.html" target="_new">記念日カード画像一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S11_04_04</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S11_04_04$A.html" target="_new">記念日カード画像登録</a><br>
+                            <a href="S11_04_04$E.html" target="_new">記念日カード画像更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S12_01_01</td>
+                        <td><i class="fas fa-envelope"></i></td>
+                        <td><a href="S12_01_01.html" target="_new">メール送信一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S12_01_02</td>
+                        <td><i class="fas fa-edit"></i></td>
+                        <td>
+                            <a href="S12_01_02$A.html" target="_new">メール送信登録</a><br>
+                            <a href="S12_01_02$E.html" target="_new">メール送信更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S12_02_01</td>
+                        <td><i class="fab fa-line"></i></td>
+                        <td><a href="S12_02_01.html" target="_new">LINEプッシュ通知一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S12_02_02</td>
+                        <td><i class="fas fa-comment-dots"></i></td>
+                        <td>
+                            <a href="S12_02_02$A.html" target="_new">LINEプッシュ通知メッセージ登録</a><br>
+                            <a href="S12_02_02$E.html" target="_new">LINEプッシュ通知メッセージ更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_01_01</td>
+                        <td><i class="fas fa-search"></i></td>
+                        <td><a href="S13_01_01.html" target="_new">会員検索</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_01_02</td>
+                        <td>-</td>
+                        <td><a href="S13_01_02.html" target="_new">会員情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_01_03</td>
+                        <td>-</td>
+                        <td><a href="S13_01_03.html" target="_new">会員グループ登録</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_02_01</td>
+                        <td>-</td>
+                        <td><a href="S13_02_01.html" target="_new">会員情報更新</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_03_01</td>
+                        <td>-</td>
+                        <td><a href="S13_03_01.html" target="_new">会員ポイント明細</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_04_01</td>
+                        <td>-</td>
+                        <td><a href="S13_04_01.html" target="_new">会員ガチャ券明細</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S13_05_01</td>
+                        <td>-</td>
+                        <td><a href="S13_05_01.html" target="_new">会員購買履歴</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S14_01_01</td>
+                        <td><i class="fas fa-users"></i></td>
+                        <td><a href="S14_01_01.html" target="_new">会員グループ管理</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S15_01_01</td>
+                        <td><i class="fas fa-server"></i></td>
+                        <td><a href="S15_01_01.html" target="_new">サイト情報一覧</a></td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S15_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S15_01_02$A.html" target="_new">サイト情報登録</a><br>
+                            <a href="S15_01_02$E.html" target="_new">サイト情報更新</a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S15_02_01</td>
+                        <td><i class="fas fa-user-cog"></i></td>
+                        <td><a href="S15_02_01.html" target="_new">会員権限更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S15_03_01</td>
+                        <td><i class="fas fa-cogs"></i></td>
+                        <td><a href="S15_03_01.html" target="_new">スタッフ権限更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S16_01_01</td>
+                        <td><i class="fas fa-globe"></i></td>
+                        <td><a href="S16_01_01.html" target="_new">団体情報マスタ更新</a></td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S16_02_01</td>
+                        <td><i class="fas fa-list-alt"></i></td>
+                        <td><a href="S16_02_01.html" target="_new">活動情報マスタ一覧</a></td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S16_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S16_02_02$A.html" target="_new">活動情報マスタ登録</a><br>
+                            <a href="S16_02_02$E.html" target="_new">活動情報マスタ更新</a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_01_01</td>
+                        <td><i class="fab fa-line"></i></td>
+                        <td><a href="S17_01_01.html" target="_new">LINE管理情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S17_01_02$A.html" target="_new">LINE管理情報登録</a><br>
+                            <a href="S17_01_02$E.html" target="_new">LINE管理情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_02_01</td>
+                        <td><i class="fas fa-cog"></i></td>
+                        <td><a href="S17_02_01.html" target="_new">システムメッセージ</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_03_01</td>
+                        <td><i class="fas fa-map"></i></td>
+                        <td><a href="S17_03_01.html" target="_new">イベント情報一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_03_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S17_03_02$A.html" target="_new">イベント情報登録</a><br>
+                            <a href="S17_03_02$E.html" target="_new">イベント情報更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_03_03</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S17_03_03.html" target="_new">イベント情報検証</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_04_01</td>
+                        <td><i class="fas fa-robot"></i></td>
+                        <td><a href="S17_04_01.html" target="_new">チャットボット情報</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_05_01</td>
+                        <td><i class="fab fa-bluetootd"></i></td>
+                        <td><a href="S17_05_01.html" target="_new">ビーコン情報</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S17_06_01</td>
+                        <td><i class="fas fa-dice"></i></td>
+                        <td><a href="S17_06_01.html" target="_new">ガチャ情報</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <del>S17_07_01</del>
+                        </td>
+                        <td>
+                            <del><i class="fas fa-images"></i></del>
+                        </td>
+                        <td>
+                            <del><a href="S17_07_01.html" target="_new">LINE画像一覧</a></del>
+                        </td>
+                        <td></td>
+                        <td>
+                            <del>○</del>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <del>S17_07_02</del>
+                        </td>
+                        <td>
+                            <del>-</del>
+                        </td>
+                        <td>
+                            <del><a href="S17_07_02.html" target="_new">LINE画像登録・更新</a></del>
+                        </td>
+                        <td></td>
+                        <td>
+                            <del>○</del>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <del>S17_07_03</del>
+                        </td>
+                        <td>
+                            <del>-</del>
+                        </td>
+                        <td>
+                            <del><a href="S17_07_03.html" target="_new">LINE画像レビジョン一覧</a></del>
+                        </td>
+                        <td></td>
+                        <td>
+                            <del>○</del>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <del>S17_07_04</del>
+                        </td>
+                        <td>
+                            <del>-</del>
+                        </td>
+                        <td>
+                            <del><a href="S17_07_04.html" target="_new">LINE画像データ追加・編集</a></del>
+                        </td>
+                        <td></td>
+                        <td>
+                            <del>○</del>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S18_01_01</td>
+                        <td><i class="fas fa-list-ol"></i></td>
+                        <td><a href="S18_01_01.html" target="_new">シリアル番号一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td>『削除』、『承認』ボタンの確認ダイアログが未実装</td>
+                    </tr>
+                    <tr>
+                        <td>S18_01_02</td>
+                        <td>-</td>
+                        <td><a href="S18_01_02.html" target="_new">シリアル番号作成</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S18_02_01</td>
+                        <td><i class="fas fa-layer-group"></i></td>
+                        <td><a href="S18_02_01.html" target="_new">シリアル番号セット一覧</a></td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S18_02_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S18_02_02$A.html" target="_new">シリアル番号セット登録</a><br>
+                            <a href="S18_02_02$E.html" target="_new">シリアル番号セット更新</a>
+                        </td>
+                        <td></td>
+                        <td>○</td>
+                        <td></td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S19_01_01</td>
+                        <td><i class="fas fa-user-friends"></i></td>
+                        <td><a href="S19_01_01.html" target="_new">スタッフ情報一覧</a></td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S19_01_02</td>
+                        <td>-</td>
+                        <td>
+                            <a href="S19_01_02$A.html" target="_new">スタッフ情報登録</a><br>
+                            <a href="S19_01_02$E.html" target="_new">スタッフ情報更新</a>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>S19_01_03</td>
+                        <td>-</td>
+                        <td><a href="S19_01_03.html" target="_new">緊急用パスコード</a></td>
+                        <td></td>
+                        <td></td>
+                        <td>○</td>
+                        <td>済</td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <pre class="mt-4"><code><span class="h6 font-weight-bold">変更履歴</span>
+2019-02-21
+・S16_01_01 団体情報マスタ更新にAPI用URLを追加。
+・S19_01_02 スタッフ情報更新に登録日と利用期限を追加。
+
+2019-03-04
+・S07_02 グッズ販売管理、S07_03 イベントチケット管理をS07_01 決済管理に統合
+
+2019-03-11
+・S07_02 グッズ販売管理、S07_03 イベントチケット管理を復活
+・S08_02 ガチャ賞一覧とガチャ賞登録・更新を追加
+・S10_01_01 静的コンテンツ一覧にロールとURLを追加。S10_01_02 静的コンテンツ追加・編集に表示権限を追加
+・S15_01_01 サイト情報一覧の登録人数を無料会員と有料会員に変更
+
+2019-03-14
+・S13_01_02 会員情報一覧にモック用ガイドに説明を追記
+・S07_01_01 決済情報一覧、S07_01_02 決済情報登録・更新の商品種別を商品形態に名称変更
+・S07_01_02 決済情報登録・更新に商品マスタの設定を追加
+・S07_01_01 S07_01_02 グッズ販売情報を商品マスタに名称変更
+
+2019-03-15
+・S07_01_02 決済情報登録・登録に掲載期間を追加
+
+2019-03-19
+・S15_02_01 会員権限更新を追加
+・S15_03_01 スタッフ権限更新を追加
+・S19_01 スタッフ管理の権限関係を変更。
+
+2019-03-25
+・S17-07 LINE画像管理を削除。S10_04 画像管理で対応。
+
+2019-03-28
+・S04_01_01 お知らせ一覧、S04_01_02 お知らせ登録更新にカテゴリーを追加
+・S04_01_02 お知らせ登録更新の対象者に訪問者、無料会員、有料会員を追加
+・S04_02 新着情報管理を削除(お知らせ機能のカテゴリーで対応)
+・S04_02 カテゴリー管理を追加
+・S10_01_02 静的コンテンツ一覧、S10_04_01 画像一覧、に「訪問」を追加
+・S10_01_02 静的コンテンツ追加・編集、S10_04_02 画像追加・編集、S15_02_01 会員権限更新の表示権限に「訪問者」を追加
+
+2019-04-04
+・S19_01_01 スタッフ情報一覧に管理スタッフ、運用スタッフ1～5の表示を追加
+・S13_01_03 グループ登録画面の新規フォルダ名を新規グループ名に修正
+
+2019-04-12
+・S11_01_01 会員証一覧、S11_01_02 会員証登録・更新を追加
+  上記に伴い、画面IDを変更。(S11_01_03 会員証画像一覧、S11_01_04 会員証画像登録・更新)
+
+2019-04-17
+・S11_04_01 記念日カード一覧の操作に記念日カード画像一覧のリンクを追加
+・S11_04_02 サイトキャラ情報登録・更新に記念日カード画像、キャラクタ差込領域を削除
+・S11_04_03 記念日カード画像一覧を追加
+・S11_04_04 記念日カード画像登録・更新を追加
+
+2019-04-18
+・S14_01_01 会員グループ管理の条件を削除
+・S04_02_01 カテゴリー画像一覧、S04_02_02 カテゴリー追加・更新から対象者を削除
+・S18_02_02$E シリアル番号セット更新のモック用ガイドを更新
+・S11_01_03 会員証画像一覧に会員証(説明)を追加
+・S11_01_04 会員証画像登録・更新の交換ポイントを必須項目を削除
+・S11_02_02 会員証キャラ登録・更新の交換ポイントを必須項目を削除
+・S11_04_03 記念日カード画像一覧に記念日カード(説明)とサイトキャラクタ数を追加
+・S15_01_02 サイト情報登録・更新、S13_01_01 会員検索、S13_02_01 会員情報更新に会員登録時に入力する汎用チェックボックスを追加
+
+2019-04-19
+・S12_02_01 LINEプッシュ通知一覧、S12_02_02 LINEプッシュ通知メッセージ登録・更新に「LINE管理情報」の選択を追加
+
+2019-04-22
+・S13_01_01 会員検索の汎用チェックボックスの検索条件の指定方法を変更
+
+2019-04-24
+・S07_01_02 決済情報登録・更新の画像の必須を削除
+・S11_01_02 会員証登録・更新のキャラクタ差込領域①の必須を削除
+・S11_01_04 会員証画像登録・更新のプレビュー画面を追加
+・S12_02_01 LINEプッシュ通知一覧の対象者に「未LINEログイン」を追加
+・S12_02_02 LINEプッシュ通知メッセージ登録・更新の対象者の「訪問者」を「未LINEログイン」に変更
+・S16_02_02 活動情報マスタ更新から削除フラグを削除
+
+2019-04-24
+・S08_01_02 ガチャ情報登録・更新に販売期間を追加
+
+2019-05-09
+・S10_04_02 画像登録・更新にダウンロード可能のチェックボックスを追加
+
+2019-05-15
+・S15-01-02 サイト情報登録・更新にタイムゾーンを追加
+
+2019-05-16
+・S10_04_02 画像登録・更新の画像種別に「A:アルバム」を追加
+・S04_03_01 スタッフブログ一覧　追加
+・S07_03_01 チケット情報一覧 追加
+・S07_03_03 チケット一覧 追加
+・S09_02_01 ポイント付与一覧 追加
+・S12_01_01 メール送信一覧 追加
+・S13_04_01 会員ガチャ券明細 追加
+・S13_05_01 会員購買履歴 追加
+・S07_01_02$A 決済情報登録　変更　活動情報が「チケット」の時チケット情報との紐付け追加
+
+2019-05-23
+・S02_02_02 メニュー画面に配送検索を追加、LINE画像一覧を削除
+・S07_05_01 配送検索、S07_05_02 配送一覧画面を追加
+・S15_03_01 スタッフ権限更新の配送管理を追加
+
+2019-05-24
+・S07_05_01 配送検索画面から決済期間を削除
+・S07_05_02 配送一覧画面の名称を配送検索結果に変更し、集計結果を表示するように変更
+・S08_02_04 ガチャアイテム情報登録・更新画面の商品を削除
+          </code></pre>
+            </section>
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div class="nav-footer">
+        <div class="container">
+            <nav class="nav justify-content-end">
+            </nav>
+        </div>
+    </div>
+</footer>
+
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

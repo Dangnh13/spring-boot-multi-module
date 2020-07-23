@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div layout:fragment="header" >
+    <div class="container">
+        <h4 class="site-logo d-none d-md-block">
+            <a th:href="@{/}">
+                <img th:src="@{/img/logo.png}" alt="Hệ thống BYSERP">
+                Hệ thống BYSERP
+            </a>
+        </h4>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <a class="navbar-brand brand-logo d-md-none" th:href="@{/}">
+                <img th:src="@{/img/logo.png}" alt="Hệ thống BYSERP">
+                Hệ thống BYSERP
+            </a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber"
+                    aria-controls="Navber" aria-expanded="false" aria-label="Trang chủ">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}"><i class="fas fa-home"></i>Trang chủ
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown1" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>Quản trị
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" th:href="@{/cmn/cmn0002/init}">
+                                <i class="fas fa-globe fa-fw"></i>
+                                Chi nhánh
+                            </a>
+                            <a class="dropdown-item" href="S16_02_01.html">
+                                <i class="fas fa-list-alt fa-fw"></i>
+                                Phòng ban
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="S15_01_01.html">
+                                <i class="fas fa-user-friends fa-fw"></i>
+                                Người dùng
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/cmn/cmn0005/init}">
+                                <i class="fas fa-tasks fa-fw"></i>Loại yêu cầu
+                            </a>
+                            <a class="dropdown-item" th:href="@{/cmn/cmn0005/init}"><i
+                                    class="fas fa-tasks fa-fw"></i>Cấu hình loại yêu cầu cho phòng ban
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown2" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-list-ol"></i>Yêu cầu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" th:href="@{/rqt/rqt0001/init}"><i
+                                    class="far fa-envelope-open fa-fw"></i>Đơn xin nghỉ phép</a>
+                            <a class="dropdown-item" th:href="@{/rqt/rqt0002/init}"><i
+                                    class="fas fa-money-check-alt"></i>Đề nghị thanh toán</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="nav-approved" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-check"></i>Phê duyệt
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <a class="dropdown-item" th:href="@{/rqt/rqt0001/init}"><i
+                                    class="fas fa-envelope-open-text"></i>Đơn xin nghỉ phép</a>
+                            <a class="dropdown-item" th:href="@{/rqt/apr0002/init}"><i
+                                    class="fas fa-money-check-alt"></i>Đề nghị thanh toán</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <a class="btn btn-sm btn-outline-light" th:href="@{/logout}" role="button"><i
+                        class="fas fa-sign-out-alt"></i>Đăng xuất
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</html>

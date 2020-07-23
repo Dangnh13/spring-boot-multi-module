@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>CMN0001</title>
+</head>
+<body>
+<h1>Secured Page</h1>
+<a href="http://localhost:8081/">index</a>
+<span sec:authentication="name"></span> |
+
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+
+    Authenticated username:
+    <div sec:authentication="name"></div>
+
+    <div sec:authorize="hasRole('USER')">hasRole('USER')</div>
+    <div sec:authorize="hasRole('ROLE_USER')">hasRole('ROLE_USER')</div>
+    <div sec:authorize="hasRole('ADMIN')">hasRole('ADMIN')</div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">hasRole('ROLE_ADMIN')</div>
+    <!-- TRUE -->
+    <div sec:authorize="hasAuthority('USER')">hasAuthority('USER')</div>
+    <div sec:authorize="hasAuthority('ROLE_USER')">hasAuthority('ROLE_USER')</div>
+    <!-- TRUE -->
+    <div sec:authorize="hasAuthority('ADMIN')">hasAuthority('ADMIN')</div>
+    <div sec:authorize="hasAuthority('FP12')">hasAuthority('FP12')</div>
+    <div sec:authorize="hasRole('FP12')">hasRole('FP12')</div>
+    <div sec:authorize="hasAuthority('SCOPE_WRITE')">hasAuthority('SCOPE_WRITE')</div>
+    <div sec:authorize="hasAuthority('WRITE')">hasAuthority('WRITE')</div>
+    <div sec:authorize="hasRole('SCOPE_WRITE')">hasRole('SCOPE_WRITE')</div>
+    <div sec:authorize="hasRole('WRITE')">hasRole('WRITE')</div>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">hasAuthority('ROLE_ADMIN')</div>
+    <div sec:authorize="hasRole('HAIDANG')">hasRole('HAIDANG')</div>
+
+    <a href="/cmn/cmn0002/init">CMN0002</a>
+
+    <a href="/logout">logout</a>
+
+    <br>
+    <hr>
+</div>
+
+<div sec:authorize="!isAuthenticated()">Text visible only to
+    unauthenticated users.
+</div>
+
+</body>
+</html>

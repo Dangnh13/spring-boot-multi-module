@@ -1,0 +1,13 @@
+thead, tbody{
+	display: block;
+}
+
+tbody {
+	height: 200px;
+	overflow-y: scroll;
+}
+
+.role-select select {
+	display: inline-block;
+	width:auto;
+}

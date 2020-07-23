@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vn.woodsland.byserp.persistence.dao.custom.suggestion.CustomTimeOffRequestMapper">
+    <resultMap id="SearchTimeOffRequestModal"
+               type="vn.woodsland.byserp.domain.modal.suggestion.SearchTimeOffRequestModal">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="type_off" jdbcType="VARCHAR" property="typeOff" />
+        <result column="request_status" jdbcType="VARCHAR" property="requestStatus"/>
+        <result column="total_step" jdbcType="SMALLINT" property="totalStep"/>
+        <result column="step" jdbcType="SMALLINT" property="step"/>
+        <result column="assigned_user" jdbcType="VARCHAR" property="assignedUser"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+        <result column="created" jdbcType="TIMESTAMP" property="created"/>
+    </resultMap>
+
+    <select id="searchTimeOffRequest" resultMap="SearchTimeOffRequestModal"
+            parameterType="vn.woodsland.byserp.dto.suggestion.prm.SearchTimeOffRequestPrm">
+        SELECT
+            rqs."id",
+            tor.type_off,
+            rqs.request_status,
+            rtd.total_step,
+            st.step,
+            st.assigned_user,
+            tor.start_time,
+            tor.end_time,
+            rqs.created
+        FROM
+            time_off_request tor
+            INNER JOIN request rqs ON tor.request_id = rqs."id"
+            INNER JOIN REQUEST_TYPE_DEPARTMENT rtd ON rqs.request_type_department_id = rtd."id"
+            INNER JOIN REQUEST_TYPE rt ON rt."id" = rtd.request_type_id
+            INNER JOIN step st ON rqs.step_id = st."id"
+            INNER JOIN users usr ON st.assigned_user = usr.username
+        WHERE
+            1 = 1
+            AND rtd.delete_flg = FALSE
+            AND st.delete_flg = FALSE
+            AND rt.delete_flg = FALSE
+            AND usr.enabled = TRUE
+            AND rqs.creator = #{username, jdbcType=VARCHAR}
+    </select>
+</mapper>

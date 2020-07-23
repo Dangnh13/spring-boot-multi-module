@@ -1,0 +1,61 @@
+server:
+  port: ${PORT:8081}
+
+#*******************************************************************************
+#                           System configuration
+#******************************************************************************/
+system:
+  domain-server: ${DOMAIN_SERVER:http://localhost:8081}
+  security:
+    oauth2:
+      client-id: ${CLIENT_ID:acme}
+      client-secret: ${CLIENT_SECRET:acmesecret}
+      auth-server: ${AUTH_SERVER:http://localhost:9000}
+      auth-server-public: ${AUTH_SERVER_PUBLIC:http://localhost:9000}
+
+#*******************************************************************************
+#                           Spring configuration
+#******************************************************************************/
+spring:
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    check-template: true
+    check-template-location: true
+  messages:
+    basename: messages,web-messages
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: -1
+      max-request-size: -1
+
+  #*******************************************************************************
+  #                           Security
+  #******************************************************************************/
+  security:
+    oauth2:
+      client:
+        registration:
+          web-client:
+            provider: oauth2-provider
+            client-id: ${system.security.oauth2.client-id}
+            client-secret: ${system.security.oauth2.client-secret}
+            client-name: Auth Server
+            scope: read,write
+            redirect-uri: ${system.domain-server}/login/oauth2/code/
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          oauth2-provider:
+            token-uri: ${system.security.oauth2.auth-server}/auth/oauth/token
+            authorization-uri: ${system.security.oauth2.auth-server-public}/auth/oauth/authorize
+            user-info-uri: ${system.security.oauth2.auth-server}/auth/user/me
+            user-name-attribute: name
+  #  cache busting
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /js/**, /css/**

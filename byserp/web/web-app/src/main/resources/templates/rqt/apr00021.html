@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Đề nghị thanh toán</title>
+</head>
+
+<section layout:fragment="content">
+
+    <h5 class="page-title">Đề nghị thanh toán</h5>
+
+    <div th:if="${success}" class="alert alert-success" role="alert">Cập nhật đơn thành công</div>
+
+    <form class="needs-validation" th:action="@{/rqt/apr00021/update}" th:object="${apr00021Form}" enctype="multipart/form-data" method="post" novalidate>
+        <div class="card card-body mb-2">
+
+            <div class="form-group row mb-2">
+                <label for="subject" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Tiêu đề</label>
+                <div class="col-md-10">
+                    <input type="text"  readonly th:field="*{data.paymentOrderData.subject}" th:value="*{data.paymentOrderData.subject}" th:id="subject" class="form-control form-control-sm" required>
+                    <small th:if="${#fields.hasErrors('data.paymentOrderData.subject')}" th:errors="*{data.paymentOrderData.subject}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="creator" class="col-form-label col-form-label-sm col-md-2 font-weight-bold">Người tạo đơn</label>
+                <div class="col-md-10">
+                    <span th:text="*{data.paymentOrderData.creatorEmail}" ></span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="paymentDate" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Ngày thanh toán</label>
+                <div class="col-md-10">
+                    <input type="text" readonly th:field="*{data.paymentOrderData.paymentDateFormat}" th:value="*{data.paymentOrderData.paymentDateFormat}" th:id="paymentDate" class="form-control form-control-sm" required>
+                    <small th:if="${#fields.hasErrors('data.paymentOrderData.paymentDateFormat')}" th:errors="*{data.paymentOrderData.paymentDateFormat}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="amount"  class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Số tiền</label>
+                <div class="col-md-10">
+                    <input type="text" readonly th:field="*{data.paymentOrderData.amount}" th:value="*{data.paymentOrderData.amount}" th:id="amount" class="form-control form-control-sm" required>
+                    <small th:if="${#fields.hasErrors('data.paymentOrderData.amount')}" th:errors="*{data.paymentOrderData.amount}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="priority" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Độ ưu tiên</label>
+                <div class="col-md-8 form-inline">
+                    <select class="form-control form-control-sm" th:field="*{data.paymentOrderData.priority}" th:id="priority" required>
+                        <option th:each="i : ${T(vn.woodsland.byserp.framework.enums.EPriority).values()}" th:value="${i}" th:text="${i.label}"></option>
+                    </select>
+                    <small th:if="${#fields.hasErrors('data.paymentOrderData.priority')}" th:errors="*{data.paymentOrderData.priority}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="description" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Nội dung</label>
+                <div class="col-md-12">
+                    <textarea th:field="*{data.paymentOrderData.description}" th:value="*{data.paymentOrderData.description}" th:id="description" class="form-control" rows="10"
+                              placeholder="Bạn có thể nhập tối đa 1000 ký tự" required></textarea>
+                    <small th:if="${#fields.hasErrors('data.paymentOrderData.description')}" th:errors="*{data.paymentOrderData.description}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Người duyệt đơn</label>
+                <div class="col-md-3">
+                    <th:block th:if="${#strings.equals(apr00021Form.requestStatus, 'REJECT') || #strings.equals(apr00021Form.requestStatus, 'CANCEL')}">
+                        <th:block th:if="${#strings.equals(apr00021Form.requestStatus, 'REJECT')}" >
+                            <span th:text="*{data.paymentOrderData.uapEmail}"></span>
+                            <input type='hidden' class="form-control form-control-sm" name="data.assignedUser" th:value="*{data.paymentOrderData.uap}" th:id="assignedUser">
+                        </th:block>
+                        <th:block th:unless="${#strings.equals(apr00021Form.requestStatus, 'REJECT')}" >
+                            <span th:text="*{data.paymentOrderData.creatorEmail}"></span>
+                            <input type='hidden' class="form-control form-control-sm" name="data.assignedUser" th:value="*{data.paymentOrderData.creator}" th:id="assignedUser">
+                        </th:block>
+                    </th:block>
+                    <th:block th:unless="${#strings.equals(apr00021Form.requestStatus, 'REJECT') || #strings.equals(apr00021Form.requestStatus, 'CANCEL')}">
+                        <th:block th:if="${#strings.equals(apr00021Form.data.paymentOrderData.step, apr00021Form.data.paymentOrderData.totalStep) and #strings.equals(apr00021Form.requestStatus, 'APPROVED')}">
+                            <span sec:authentication="name"></span>
+                            <input type='hidden' class="form-control form-control-sm" name="data.assignedUser" th:value="${#authentication.getName()}" th:id="assignedUser">
+                        </th:block>
+                        <th:block th:unless="${#strings.equals(apr00021Form.data.paymentOrderData.step, apr00021Form.data.paymentOrderData.totalStep) and #strings.equals(apr00021Form.requestStatus, 'APPROVED')}">
+                            <input type='text' th:field="*{data.email}" th:value="*{data.email}" th:id="email" class="form-control form-control-sm"/>
+                            <input type='hidden' class="form-control form-control-sm" th:field="*{data.assignedUser}" th:value="*{data.assignedUser}" th:id="assignedUser">
+                            <small id="assigned-user-desc" class="text-muted">
+                                <th:block th:if="${not #strings.isEmpty(apr00021Form.data.assignedUser)}">
+                                    <span th:text="*{data.fullname}"></span>-<span th:text="*{data.position}"></span>
+                                </th:block>
+                            </small>
+                            <input type='hidden' th:field="*{data.fullname}" th:value="*{data.fullname}" th:id="fullname" class="form-control form-control-sm"/>
+                            <input type='hidden' th:field="*{data.position}" th:value="*{data.position}" th:id="position" class="form-control form-control-sm"/>
+                        </th:block>
+                    </th:block>
+
+                    <small th:if="${#fields.hasErrors('data.assignedUser')}" th:errors="*{data.assignedUser}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="deadline" class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Thời gian mong muốn phản hồi</label>
+                <div class="col-md-10">
+                    <input type="text" readonly th:field="*{data.paymentOrderData.deadlineFormat}" th:value="*{data.paymentOrderData.deadlineFormat}" th:id="deadline" class="form-control form-control-sm" required>
+                    <small th:if="${#fields.hasErrors('data.paymentOrderData.deadlineFormat')}" th:errors="*{data.paymentOrderData.deadlineFormat}" class="text-danger">
+                    </small>
+                </div>
+            </div>
+
+            <div th:if="${not #lists.isEmpty(apr00021Form.data.comments)}" class="form-group row mb-2">
+                <label class="col-form-label col-form-label-sm col-md-2 required font-weight-bold">Lịch sử thảo luận:</label>
+                <div class="alert alert-light mb-0" role="alert">
+                    <div class="row" th:each="comment : ${apr00021Form.data.comments}">
+                        <div class="col-auto"><strong><span th:text="${comment.creator}"></span>：</strong></div>
+                        <div class="col-auto"><span th:text="${comment.comment}"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-2">
+                <label for="newComment" class="col-form-label col-form-label-sm col-md-2 font-weight-bold">Thảo luận</label>
+                <div class="col-md-12">
+                    <textarea id="newComment" th:field="*{data.newComment}" th:value="*{data.newComment}" class="form-control" rows="4" placeholder="Bạn có thể nhập tối đa 1000 ký tự" ></textarea>
+                </div>
+            </div>
+
+            <div class="row justify-content-end mt-3">
+                <div class="col-md-4 order-md-2 mb-md-0 mb-2">
+                    <button th:if="${#strings.equals(apr00021Form.requestStatus, 'APPROVED')}" class="btn btn-outline-dark btn-block" type="submit" id="btn-approved">
+                        <i class="fas fa-user-check"></i><strong>Xác nhận duyệt</strong>
+                    </button>
+                    <button th:if="${#strings.equals(apr00021Form.requestStatus, 'REJECT')}" class="btn btn-outline-dark btn-block" type="submit" id="btn-reject">
+                        <i class="fas fa-undo"></i><strong>Xác nhận từ chối yêu cầu</strong>
+                    </button>
+                    <button th:if="${#strings.equals(apr00021Form.requestStatus, 'REOPEN')}" class="btn btn-outline-dark btn-block" type="submit" id="btn-reopen">
+                        <i class="fas fa-undo"></i><strong>Xác nhận mở lại</strong>
+                    </button>
+                    <button th:if="${#strings.equals(apr00021Form.requestStatus, 'CANCEL')}" class="btn btn-outline-danger btn-block" type="submit" id="btn-cancel">
+                        <i class="fas fa-times"></i><strong>Xác nhận hủy bỏ yêu cầu</strong>
+                    </button>
+                </div>
+
+                <div class="col-md-4 order-md-1">
+                    <a class="btn btn-outline-secondary btn-block" th:href="@{/rqt/apr0002/init}" role="button"><i
+                            class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="request-id-hidden" th:field="*{requestId}" th:value="*{requestId}" >
+        <input type="hidden" id="request-status-hidden" th:field="*{requestStatus}" th:value="*{requestStatus}" >
+        <input type="hidden" id="step-hidden" th:field="*{data.paymentOrderData.step}" th:value="*{data.paymentOrderData.step}" >
+        <input type="hidden" id="total-step-hidden" th:field="*{data.paymentOrderData.totalStep}" th:value="*{data.paymentOrderData.totalStep}" >
+        <input type="hidden" th:field="*{data.paymentOrderData.creator}" th:value="*{data.paymentOrderData.creator}" >
+
+    </form>
+
+    <script th:src="@{/webjars/Bootstrap-3-Typeahead/3.1.1/bootstrap3-typeahead.js}"></script>
+    <script th:src="@{/js/rqt/apr00021.js}"></script>
+</section>

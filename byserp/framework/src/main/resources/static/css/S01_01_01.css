@@ -1,0 +1,22 @@
+
+.form-login {
+  width: 100%;
+  max-width: 320px;
+  padding: 15px;
+}
+.form-login .form-control {
+  position: relative;
+}
+.form-login .form-control:focus {
+  z-index: 2;
+}
+.form-login input[id="loginId"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-login input[id="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

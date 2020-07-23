@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Cập nhật chi nhánh</title>
+</head>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Cập nhật chi nhánh</h5>
+
+    <div th:if="${success}" class="alert alert-success" role="alert">Cập nhật thành công</div>
+
+    <form class="needs-validation" th:action="@{/cmn/cmn00021/update}" method="post" th:object="${cmn00021Form}"
+          novalidate>
+        <div class="card card-body">
+            <div class="form-group mb-1 row">
+                <label for="id"
+                       class="col-form-label col-form-label-sm col-md-3 text-md-right font-weight-bold">Mã chi
+                    nhánh</label>
+                <div class="col-md-8">
+                    <input type="text" th:value="*{id}" th:field="*{id}" readonly class="form-control form-control-sm"
+                           id="id"
+                           placeholder="Mã chi nhánh" required>
+                    <div class="invalid-feedback">
+                        Mã chi nhánh không hợp lệ
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row mb-0">
+                <label for="branchName"
+                       class="col-form-label col-form-label-sm col-md-3 text-md-right font-weight-bold">
+                    Tên chi nhánh
+                </label>
+
+                <div class="col-md-8">
+                    <input type="text" th:value="*{branchName}" th:field="*{branchName}"
+                           class="form-control input-text-group" id="branchName"
+                           placeholder="Tên chi nhánh" required>
+                    <div class="invalid-feedback">
+                        Tên chi nhánh không hợp lệ
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-end mt-3">
+            <div class="col-md-4 order-md-2 mb-md-0 mb-2">
+                <button class="btn btn-outline-dark btn-block" type="submit" id="confirm-submit"><i
+                        class="fas fa-save"></i><strong>Cập nhật</strong></button>
+            </div>
+            <div class="col-md-4 order-md-1 mb-md-0">
+                <a class="btn btn-outline-secondary btn-block" th:href="@{/cmn/cmn0002/init}" role="button"><i
+                        class="fas fa-arrow-left"></i><strong>Quay lại</strong></a>
+            </div>
+        </div>
+    </form>
+</section>

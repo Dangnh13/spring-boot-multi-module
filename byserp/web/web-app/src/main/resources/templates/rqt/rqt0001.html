@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <title>Đơn xin nghỉ phép</title>
+</head>
+
+<section layout:fragment="content">
+    <h5 class="page-title">Đơn xin nghỉ phép</h5>
+
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered text-nowrap mb-0"
+               id="table"
+               data-toggle="table"
+               data-url="/rqt/rqt0001/load-data"
+               data-side-pagination="server"
+               data-pagination="true"
+               data-click-to-select="true"
+               data-show-refresh="true"
+               data-id-field="id"
+               data-page-size="10">
+            <thead>
+            <tr>
+                <th data-radio="true" align="center" valign="middle" ></th>
+                <th data-field="id" data-sortable="true">No.</th>
+                <th data-field="typeOff" data-halign="left">Loại đơn</th>
+                <th data-field="startTime">Từ lúc</th>
+                <th data-field="endTime">Đến lúc</th>
+                <th data-field="stepProcess" data-halign="center">Bước</th>
+                <th data-field="requestStatus">Trạng thái</th>
+                <th data-field="assignedUser" data-halign="left">Người được giao</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="row justify-content-end mt-3">
+        <div class="col-md-4 order-md-3 mb-md-0 mb-2">
+            <a class="btn btn-outline-dark btn-block" th:href="@{/rqt/rqt00011/init}" role="button"><i
+                    class="fas fa-plus-square"></i><strong>Tạo yêu cầu</strong></a>
+
+
+        </div>
+    </div>
+
+    <script th:src="@{/js/rqt/rqt0001.js}"></script>
+</section>

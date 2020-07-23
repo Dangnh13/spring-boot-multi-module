@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>cmn0003</title>
+</head>
+<body>
+cmn0003 <br>
+<form action="#" th:action="@{/}" th:object="${demoForm}" method="post">
+    <span th:text="${ten}"/>
+    <span th:text="${demoForm.getAuthor()}"/>
+    <span th:text="${demoForm.getBook()}"/>
+
+    <hr>
+
+    <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}">author error </span>
+</form>
+</body>
+</html>
