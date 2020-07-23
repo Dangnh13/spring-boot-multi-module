@@ -1,4 +1,4 @@
-# Ominext's KKS project
+# Spring boot multi module base project
 
 ##### Technology stack in project:
 
@@ -32,6 +32,6 @@
 ##### GIT branching model
 ![DTO](assets/images/GIT.png?raw=true)
 
-sua chut
+
 
 
